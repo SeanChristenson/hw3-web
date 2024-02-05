@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lost in the Forest</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="story-container">
+    <h1>Lost in the Forest</h1>
+    <p>You find yourself lost in a dense forest. Which path will you take?</p>
+    <div id="options">
+      <button onclick="goLeft()">Go Left</button>
+      <button onclick="goStraight()">Go Straight</button>
+      <button onclick="goRight()">Go Right</button>
+    </div>
+    <p id="result"></p>
+    <div id="image-container">
+      <img id="image" src="forest.jpg" alt="Initial Image">
+    </div>
+  </div>
+
+  <script>
+    let result = document.getElementById("result");
+    let image = document.getElementById("image");
+
+    function goLeft() {
+      result.innerHTML = "You encounter a river. Do you swim across or try to find a bridge?";
+      clearOptions();
+      addButton("Swim across", "swimAcross");
+      addButton("Find a bridge", "findBridge");
+      displayImage("river.jpg");
+    }
+
+    function goStraight() {
+      result.innerHTML = "You stumble upon an old cabin. Do you enter or keep walking?";
+      clearOptions();
+      addButton("Enter the cabin", "enterCabin");
+      addButton("Keep walking", "keepWalking");
+      displayImage("cabin.jpg");
+    }
+
+    function goRight() {
+      result.innerHTML = "You come across a fork in the path. Which way will you choose?";
+      clearOptions();
+      addButton("Take the left path", "takeLeftPath");
+      addButton("Take the right path", "takeRightPath");
+      displayImage("fork.jpg");
+    }
+
+    function swimAcross() {
+      result.innerHTML = "You bravely swim across the river and drown about 3 seconds after you started.";
+      clearOptions();
+      displayImage("dead.png");
+    }
+
+    function findBridge() {
+      result.innerHTML = "You search for a bridge but can't find one. You decide to swim across and immediately drown.";
+      clearOptions();
+      displayImage("dead.png");
+    }
+
+    function enterCabin() {
+      result.innerHTML = "You cautiously enter the cabin and find it abandoned. You decide to spend the night there and end up getting killed by a ghost that huanted the cabin.";
+      clearOptions();
+      displayImage("ghost.jpg");
+    }
+
+    function keepWalking() {
+      result.innerHTML = "You decide to keep walking and walk into a bear, you know what happens next.";
+      clearOptions();
+      displayImage("bear.jpg");
+    }
+
+    function takeLeftPath() {
+      result.innerHTML = "You choose the left path and encounter a bear, you know what happens next.";
+      clearOptions();
+      displayImage("bear.jpg");
+    }
+
+    function takeRightPath() {
+      result.innerHTML = "You choose the right path and stumble upon a hidden cave entrance! Annnnd theres a bear behind you.";
+      clearOptions();
+      displayImage("bear.jpg");
+    }
+
+    function clearOptions() {
+      let options = document.getElementById("options");
+      options.innerHTML = '';
+    }
+
+    function addButton(text, action) {
+      let button = document.createElement("button");
+      button.textContent = text;
+      button.onclick = function() {
+        window[action]();
+      };
+      document.getElementById("options").appendChild(button);
+    }
+
+    function displayImage(imageSrc) {
+      image.src = imageSrc;
+    }
+  </script>
+</body>
+</html>
